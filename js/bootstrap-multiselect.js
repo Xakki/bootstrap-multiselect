@@ -108,6 +108,7 @@
             selectAllValue: 'multiselect-all',
             enableFiltering: false,
             enableCaseInsensitiveFiltering: false,
+            filterOptgroup: false,// fix for Optgroup filter
             filterPlaceholder: 'Search',
             // possible options: 'text', 'value', 'both'
             filterBehavior: 'text',
@@ -406,7 +407,7 @@
                                     if (value != this.options.selectAllValue) {
                                         var text = $('label', element).text();
                                         var value = $('input', element).val();
-                                        if (value && text && value != this.options.selectAllValue) {
+                                        if (text && ( (value && value != this.options.selectAllValue) || (typeof(value)=='undefined' && this.options.filterOptgroup) ) ) {
                                             // by default lets assume that element is not
                                             // interesting for this search
                                             var showElement = false;
